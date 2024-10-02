@@ -5,7 +5,7 @@ interface BlogCardProps {
   authorName: string;
   title: string;
   content: string;
-  publishedDate: string;
+  publishedDate?: string;
 }
 
 export const BlogCard = ({
@@ -23,7 +23,9 @@ export const BlogCard = ({
             <Avatar name={authorName} />
           </div>
           <div className="pl-2">{authorName}</div>
-          <div className="pl-2 font-thin text-slate-500">{publishedDate}</div>
+          <div className="pl-2 font-thin text-slate-500">
+            {publishedDate || null}
+          </div>
         </div>
         <div className="text-xl font-bold pt-2">{title}</div>
         <div className="font-normal text-lg">
