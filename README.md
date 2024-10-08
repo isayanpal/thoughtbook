@@ -1,6 +1,6 @@
-# thoughtBook ✍️
+# ThoughtBook ✍️
 
-thoughtBook is a blog-writing platform where users can create, organize, and manage their blog posts efficiently.
+ThoughtBook is a blog-writing platform where users can create, organize, and manage their blog posts efficiently.
 
 ## Features 🌟
 
