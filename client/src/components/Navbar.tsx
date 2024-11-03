@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
@@ -20,6 +21,9 @@ export const Navbar = () => {
         <button
           onClick={() => {
             localStorage.removeItem("token");
+            toast("Logged out", {
+              icon: "✅",
+            });
             navigate("/signin");
           }}
           type="button"

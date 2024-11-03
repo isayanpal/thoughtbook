@@ -3,6 +3,7 @@ import { Navbar } from "../components/Navbar";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const Publish = () => {
   const [title, setTitle] = useState("");
@@ -42,6 +43,9 @@ export const Publish = () => {
                     },
                   }
                 );
+                toast("Blog created!", {
+                  icon: "👏",
+                });
                 navigate(`/blog/${response.data.id}`);
               } catch (error) {
                 console.log("Error occured while publishing post");

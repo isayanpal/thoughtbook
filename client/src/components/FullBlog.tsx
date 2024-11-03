@@ -1,7 +1,35 @@
+import toast from "react-hot-toast";
+import { BACKEND_URL } from "../config";
 import { Blog } from "../hooks";
 import { Avatar } from "./BlogCard";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const FullBlog = ({ blogDetails }: { blogDetails: Blog }) => {
+  const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        alert("You are not logged in");
+        return;
+      }
+      await axios.delete(`${BACKEND_URL}/api/v1/blog/${blogDetails.id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      toast("Blog deleted successfully", {
+        icon: "🗑️",
+      });
+      navigate("/blogs");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to delete blog.");
+    }
+  };
   return (
     <div>
       <div className="flex justify-center">
@@ -18,6 +46,12 @@ export const FullBlog = ({ blogDetails }: { blogDetails: Blog }) => {
                 {blogDetails.author.name || "Anonymous"}
               </div>
             </div>
+            <button
+              onClick={handleDelete}
+              className="mt-4 px-4 py-2 bg-red-500 text-white font-bold rounded"
+            >
+              Delete Blog
+            </button>
           </div>
         </div>
       </div>
